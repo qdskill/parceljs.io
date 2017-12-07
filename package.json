@@ -13,7 +13,8 @@
     "markdown-styles": "^3.1.10",
     "now": "^8.3.10",
     "now-travis": "^1.2.0",
-    "npm-run-all": "^4.1.1"
+    "npm-run-all": "^4.1.1",
+    "gh-pages": "^1.1.0"
   },
   "scripts": {
     "build": "npm-run-all clean build:*",
@@ -21,6 +22,6 @@
     "build:docs": "generate-md --layout ./src/layout --input src/docs/ --output dist/",
     "build:index": "cp src/index.html dist/index.html",
     "start": "serve dist",
-    "deploy": "now"
+    "deploy": "gh-pages -d dist"
   }
 }
