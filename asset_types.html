@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>📝 Asset Types</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link type="text/css" rel="stylesheet" href="assets/style.css" />
+  <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
+  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-110647385-1');
+  </script>
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">
+      <img class="parcel" src="assets/parcel.png" srcset="assets/parcel@2x.png 2x, assets/parcel@3x.png 3x" height="30">
+      <img class="type" src="assets/logo.svg" alt="Parcel">
+    </a>
+    <div class="links">
+      <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+    </div>
+  </header>
+  <div class="content">
+    <nav>
+      <ul>
+        <li><a href="getting_started.html">🚀 Getting Started</a></li>
+        <li><a href="assets.html">📦 Assets</a></li>
+        <li><a href="transforms.html">🐠 Transforms</a></li>
+        <li><a href="code_splitting.html">✂️ Code Splitting</a></li>
+        <li><a href="hmr.html">🔥 Hot Module Replacement</a></li>
+        <li><a href="production.html">✨ Production</a></li>
+      </ul>
+      <h3>Advanced</h3>
+      <ul>
+        <li><a href="how_it_works.html">🛠 How It Works</a></li>
+        <li><a href="asset_types.html">📝 Asset Types</a></li>
+        <li><a href="packagers.html">📦 Packagers</a></li>
+        <li><a href="plugins.html">🔌 Plugins</a></li>
+      </ul>
+    </nav>
+    <main><h1 id="📝-asset-types"><a class="header-link" href="#📝-asset-types"></a>📝 Asset Types</h1>
+<p>As described in the <a href="assets.html">Assets documentation</a>, Parcel represents each input file as an <code>Asset</code>. Asset types are represented as classes inheriting from the base <code>Asset</code> class and implementing the required interface to parse, analyze dependencies, transform, and code generate.</p>
+<p>Because Parcel processes assets in parallel across multiple processor cores, the transforms that asset types can perform are limited to those that operate on a single file at a time. For transforms across multiple files, a custom <a href="packagers.html">Packager</a> can be used.</p>
+<h2 id="asset-interface"><a class="header-link" href="#asset-interface"></a>Asset Interface</h2>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> {Asset} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'parcel-bundler'</span>);
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyAsset</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Asset</span> </span>{
+  type = <span class="hljs-string">'foo'</span>; <span class="hljs-comment">// set the main output type.</span>
+
+  parse(code) {
+    <span class="hljs-comment">// parse code to an AST</span>
+    <span class="hljs-keyword">return</span> ast;
+  }
+
+  pretransform() {
+    <span class="hljs-comment">// optional. transform prior to collecting dependencies.</span>
+  }
+
+  collectDependencies() {
+    <span class="hljs-comment">// analyze dependencies</span>
+    <span class="hljs-keyword">this</span>.addDependency(<span class="hljs-string">'my-dep'</span>);
+  }
+
+  transform() {
+    <span class="hljs-comment">// optional. transform after collecting dependencies.</span>
+  }
+
+  generate() {
+    <span class="hljs-comment">// code generate. you can return multiple renditions if needed.</span>
+    <span class="hljs-comment">// results are passed to the appropriate packagers to generate final bundles.</span>
+    <span class="hljs-keyword">return</span> {
+      <span class="hljs-attr">foo</span>: <span class="hljs-string">'my stuff here'</span>, <span class="hljs-comment">// main output</span>
+      js: <span class="hljs-string">'some javascript'</span> <span class="hljs-comment">// alternative rendition to be placed in JS bundle if needed</span>
+    };
+  }
+}</code></pre><h2 id="registering-an-asset-type"><a class="header-link" href="#registering-an-asset-type"></a>Registering an Asset Type</h2>
+<p>You can register your asset type with a bundler using the <code>addAssetType</code> method. It accepts a file extension to register, and the path to your asset type module. It is a path rather than the actual object so that it can be passed to worker processes.</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> Bundler = <span class="hljs-built_in">require</span>(<span class="hljs-string">'parcel-bundler'</span>);
+
+<span class="hljs-keyword">let</span> bundler = <span class="hljs-keyword">new</span> Bundler(<span class="hljs-string">'input.js'</span>);
+bundler.addAssetType(<span class="hljs-string">'.ext'</span>, <span class="hljs-built_in">require</span>.resolve(<span class="hljs-string">'./MyAsset'</span>));</code></pre>    </main>
+  </div>
+  <script>
+    (function () {
+      var activeLink = Array.from(document.querySelectorAll('nav a')).find(function (a) {
+        return a.href === window.location.href;
+      });
+
+      activeLink.classList.add('selected');
+    })();
+  </script>
+</body>
+</html>

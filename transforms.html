@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🐠 Transforms</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link type="text/css" rel="stylesheet" href="assets/style.css" />
+  <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
+  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-110647385-1');
+  </script>
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">
+      <img class="parcel" src="assets/parcel.png" srcset="assets/parcel@2x.png 2x, assets/parcel@3x.png 3x" height="30">
+      <img class="type" src="assets/logo.svg" alt="Parcel">
+    </a>
+    <div class="links">
+      <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+    </div>
+  </header>
+  <div class="content">
+    <nav>
+      <ul>
+        <li><a href="getting_started.html">🚀 Getting Started</a></li>
+        <li><a href="assets.html">📦 Assets</a></li>
+        <li><a href="transforms.html">🐠 Transforms</a></li>
+        <li><a href="code_splitting.html">✂️ Code Splitting</a></li>
+        <li><a href="hmr.html">🔥 Hot Module Replacement</a></li>
+        <li><a href="production.html">✨ Production</a></li>
+      </ul>
+      <h3>Advanced</h3>
+      <ul>
+        <li><a href="how_it_works.html">🛠 How It Works</a></li>
+        <li><a href="asset_types.html">📝 Asset Types</a></li>
+        <li><a href="packagers.html">📦 Packagers</a></li>
+        <li><a href="plugins.html">🔌 Plugins</a></li>
+      </ul>
+    </nav>
+    <main><h1 id="🐠-transforms"><a class="header-link" href="#🐠-transforms"></a>🐠 Transforms</h1>
+<p>While many bundlers require you to install and configure plugins to transform assets, Parcel has support for many common transforms and transpilers built in out of the box. You can transform JavaScript using <a href="https://babeljs.io">Babel</a>, CSS using <a href="http://postcss.org">PostCSS</a>, and HTML using <a href="https://github.com/posthtml/posthtml">PostHTML</a>. Parcel automatically runs these transforms when it finds a configuration file (e.g. <code>.babelrc</code>, <code>.postcssrc</code>) in a module.</p>
+<p>This even works in third-party <code>node_modules</code>: if a configuration file is published as part of the package, the transform is automatically turned on for that module only. This keeps bundling fast since only modules that need to be transformed are processed. It also means that you don&#39;t need to manually configure the transforms to include and exclude certain files, or know how third party code is built in order to use it in your application.</p>
+<h2 id="babel"><a class="header-link" href="#babel"></a>Babel</h2>
+<p><a href="https://babeljs.io">Babel</a> is a popular transpiler for JavaScript, with a large plugin ecosystem. Using Babel with Parcel works the same way as using it standalone or with other bundlers.</p>
+<p>Install presets and plugins in your app:</p>
+<pre class="hljs"><code>yarn add babel-preset-env</code></pre><p>Then, create a <code>.babelrc</code>:</p>
+<pre class="hljs"><code>{
+  <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"env"</span>]
+}</code></pre><h2 id="postcss"><a class="header-link" href="#postcss"></a>PostCSS</h2>
+<p><a href="http://postcss.org">PostCSS</a> is a tool for transforming CSS with plugins, like <a href="https://github.com/postcss/autoprefixer">autoprefixer</a>, <a href="http://cssnext.io/">cssnext</a>, and <a href="https://github.com/css-modules/css-modules">CSS Modules</a>. You can configure PostCSS with Parcel by creating a configuration file using one of these names: <code>.postcssrc</code> (JSON), <code>.postcssrc.js</code>, or <code>postcss.config.js</code>.</p>
+<p>Install plugins in your app:</p>
+<pre class="hljs"><code>yarn add postcss-modules autoprefixer</code></pre><p>Then, create a <code>.postcssrc</code>:</p>
+<pre class="hljs"><code>{
+  <span class="hljs-attr">"modules"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"plugins"</span>: {
+    <span class="hljs-attr">"autoprefixer"</span>: {
+      <span class="hljs-attr">"grid"</span>: <span class="hljs-literal">true</span>
+    }
+  }
+}</code></pre><p>Plugins are specified in the <code>plugins</code> object as keys, and options are defined using object values. If there are no options for a plugin, just set it to <code>true</code> instead.</p>
+<p>Target browsers for Autoprefixer, cssnext and other tools can be specified in <code>.browserslistrc</code> file:</p>
+<pre class="hljs"><code>&gt; <span class="hljs-number">1</span>%
+last <span class="hljs-number">2</span> versions</code></pre><p>CSS Modules are enabled slightly differently using the a top-level <code>modules</code> key. This is because Parcel needs to have special support for CSS Modules since they export an object to be included in the JavaScript bundle as well. Note that you still need to install <code>postcss-modules</code> in your project.</p>
+<h2 id="posthtml"><a class="header-link" href="#posthtml"></a>PostHTML</h2>
+<p><a href="https://github.com/posthtml/posthtml">PostHTML</a> is a tool for transforming HTML with plugins. You can configure PostHTML with Parcel by creating a configuration file using one of these names: <code>.posthtmlrc</code> (JSON), <code>posthtmlrc.js</code>, or <code>posthtml.config.js</code>.</p>
+<p>Install plugins in your app:</p>
+<pre class="hljs"><code>yarn add posthtml-img-autosize</code></pre><p>Then, create a <code>.posthtmlrc</code>:</p>
+<pre class="hljs"><code>{
+  <span class="hljs-attr">"plugins"</span>: {
+    <span class="hljs-attr">"posthtml-img-autosize"</span>: {
+      <span class="hljs-attr">"root"</span>: <span class="hljs-string">"./images"</span>
+    }
+  }
+}</code></pre><p>Plugins are specified in the <code>plugins</code> object as keys, and options are defined using object values. If there are no options for a plugin, just set it to <code>true</code> instead.</p>
+    </main>
+  </div>
+  <script>
+    (function () {
+      var activeLink = Array.from(document.querySelectorAll('nav a')).find(function (a) {
+        return a.href === window.location.href;
+      });
+
+      activeLink.classList.add('selected');
+    })();
+  </script>
+</body>
+</html>
