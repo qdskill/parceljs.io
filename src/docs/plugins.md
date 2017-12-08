@@ -1,12 +1,14 @@
-# 🔌 Plugins
+# 🔌 插件
 
-Parcel takes a slightly different approach from many other tools in that many common formats are included out of the box without the need to install and configure additional plugins. However, there are cases where you might want to extend Parcel in a nonstandard way, and for those times, plugins are supported. Installed plugins are automatically detected and loaded based on `package.json` dependencies.
+Parcel 采用与许多其它工具稍微不同的策略，许多常见的格式都被开箱即用地包含进来，而不需要安装或者配置额外的插件。然而，有些情况你可能会想在非标准的情况下扩展 Parcel 的能力，而那些时候，插件是被支持的。安装的插件会基于 `package.json` 的依赖会被自动检测并加载。
 
-When adding support for a new file format to Parcel, you should first consider how widespread it is, and how standardized the implementation is. If it is sufficiently widespread and standard, the format should probably be added to Parcel core rather than as a plugin that users need to install. If you have any doubts, [GitHub](https://github.com/parcel-bundler/parcel/issues) is the right place to discuss.
+当你添加一种全新的文件格式到 Parcel，你应该先考虑它会有多通用，还有它的实现会有多标准化。如果它足够通用及标准，该格式很可能应该被添加到 Parcel 的核心，而不是作为一种用户需要安装的插件。如果你有其它的疑惑，可以到[GitHub](https://github.com/parcel-bundler/parcel/issues)一起讨论。
 
-## Plugin API
 
-Parcel plugins are very simple. They are simply modules that export a single function, which is called by Parcel automatically during initialization. The function receives as input the `Bundler` object, and can do configuration such as registering asset types and packagers.
+## 插件 API
+
+Parcel 插件很简单。它们只是简单地将几个模块输出成一个函数，它会被 Parcel 在初始化的时候自动调用。函数接收 `Bundler` 对象作为输入，也可以做一些配置，比如注册资源类型和注册 packager。
+
 
 ```javascript
 module.exports = function (bundler) {
@@ -15,8 +17,8 @@ module.exports = function (bundler) {
 };
 ```
 
-Publish this package on npm using the `parcel-plugin-` prefix, and it will be automatically detected and loaded as described below.
+请发布这个包到 npm，并使用 `parcel-plugin-` 前缀，那它就会将后文提到的那样被自动检测和加载。
 
-## Using Plugins
+## 使用插件
 
-Using plugins in Parcel could not be any simpler. All you need to do is install them and save in your `package.json`. Plugins should be named with the prefix `parcel-plugin-`, e.g. `parcel-plugin-foo`. Any dependencies listed in `package.json` with this prefix will be automatically loaded during initialization.
+在 Parcel 中使用插件是前所未有地简单。你所做的，只是将它们安装好并保存到 `package.json` 中。插件需要以 `parcel-plugin-` 被命名。例如 `parcel-plugin-foo`。任何在 `package.json` 中被列出的带有此前缀的依赖，都会在初始化的时候被自动加载。
