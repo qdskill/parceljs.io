@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>📝 Asset Types</title>
+  <title>📝 资源类型</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link type="text/css" rel="stylesheet" href="assets/style.css" />
   <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
@@ -44,43 +44,43 @@
         <li><a href="plugins.html">🔌 插件</a></li>
       </ul>
     </nav>
-    <main><h1 id="📝-asset-types"><a class="header-link" href="#📝-asset-types"></a>📝 Asset Types</h1>
-<p>As described in the <a href="assets.html">Assets documentation</a>, Parcel represents each input file as an <code>Asset</code>. Asset types are represented as classes inheriting from the base <code>Asset</code> class and implementing the required interface to parse, analyze dependencies, transform, and code generate.</p>
-<p>Because Parcel processes assets in parallel across multiple processor cores, the transforms that asset types can perform are limited to those that operate on a single file at a time. For transforms across multiple files, a custom <a href="packagers.html">Packager</a> can be used.</p>
-<h2 id="asset-interface"><a class="header-link" href="#asset-interface"></a>Asset Interface</h2>
+    <main><h1 id="📝-资源类型"><a class="header-link" href="#📝-资源类型"></a>📝 资源类型</h1>
+<p>正如 <a href="assets.html">资源文档</a> 里描述的，Parcel 将输入的文件看作 <code>资源（Asset）</code>。资源类型被看作继承自基准 <code>Asset</code>类的子类，并实现了必须的接口，去解析、分析依赖、转换及生成代码。</p>
+<p>因为 Parcel 在多处理器内核中并行处理资源，因此资源类型所能够实施的转换行为，会被限制为那些可以在单一时间内操作单一文件的转换行为。而那些需要操作多个文件的转换行为，则需要一个自定义的<a href="packagers.html">Packager</a>。</p>
+<h2 id="资源接口"><a class="header-link" href="#资源接口"></a>资源接口</h2>
 <pre class="hljs"><code><span class="hljs-keyword">const</span> {Asset} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'parcel-bundler'</span>);
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyAsset</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Asset</span> </span>{
-  type = <span class="hljs-string">'foo'</span>; <span class="hljs-comment">// set the main output type.</span>
+  type = <span class="hljs-string">'foo'</span>; <span class="hljs-comment">// 设置主要输出类型</span>
 
   parse(code) {
-    <span class="hljs-comment">// parse code to an AST</span>
+    <span class="hljs-comment">// 将代码解析为AST树</span>
     <span class="hljs-keyword">return</span> ast;
   }
 
   pretransform() {
-    <span class="hljs-comment">// optional. transform prior to collecting dependencies.</span>
+    <span class="hljs-comment">// 可选。在收集依赖之前转换。</span>
   }
 
   collectDependencies() {
-    <span class="hljs-comment">// analyze dependencies</span>
+    <span class="hljs-comment">// 分析依赖</span>
     <span class="hljs-keyword">this</span>.addDependency(<span class="hljs-string">'my-dep'</span>);
   }
 
   transform() {
-    <span class="hljs-comment">// optional. transform after collecting dependencies.</span>
+    <span class="hljs-comment">// 可选。在收集依赖之后转换。</span>
   }
 
   generate() {
-    <span class="hljs-comment">// code generate. you can return multiple renditions if needed.</span>
-    <span class="hljs-comment">// results are passed to the appropriate packagers to generate final bundles.</span>
+    <span class="hljs-comment">// 生成做对。如有需要，可返回多个转换(renditions)。</span>
+    <span class="hljs-comment">// 结果会传到合适的 packagers 去生成最终的文件束</span>
     <span class="hljs-keyword">return</span> {
-      <span class="hljs-attr">foo</span>: <span class="hljs-string">'my stuff here'</span>, <span class="hljs-comment">// main output</span>
-      js: <span class="hljs-string">'some javascript'</span> <span class="hljs-comment">// alternative rendition to be placed in JS bundle if needed</span>
+      <span class="hljs-attr">foo</span>: <span class="hljs-string">'my stuff here'</span>, <span class="hljs-comment">// 主输出</span>
+      js: <span class="hljs-string">'some javascript'</span> <span class="hljs-comment">// 如若需要，此转换内容可被放到 JS 文件束中</span>
     };
   }
-}</code></pre><h2 id="registering-an-asset-type"><a class="header-link" href="#registering-an-asset-type"></a>Registering an Asset Type</h2>
-<p>You can register your asset type with a bundler using the <code>addAssetType</code> method. It accepts a file extension to register, and the path to your asset type module. It is a path rather than the actual object so that it can be passed to worker processes.</p>
+}</code></pre><h2 id="注册资源类型"><a class="header-link" href="#注册资源类型"></a>注册资源类型</h2>
+<p>你可以用 <code>addAssetType</code> 方法在打包工具中去注册你的资源类型。它接受一个文件扩展名，以及资源类型模块的路径。它是一个路径，而非实际的对象，这样可以使它被传至 worker 进程中。</p>
 <pre class="hljs"><code><span class="hljs-keyword">const</span> Bundler = <span class="hljs-built_in">require</span>(<span class="hljs-string">'parcel-bundler'</span>);
 
 <span class="hljs-keyword">let</span> bundler = <span class="hljs-keyword">new</span> Bundler(<span class="hljs-string">'input.js'</span>);
