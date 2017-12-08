@@ -1,4 +1,4 @@
-# ✨ 生产模式(Production)
+# ✨ 生产环境(Production)
 
 当需要绑定应用程序的时候，你可以使用 Parcel 的生产模式。
 
