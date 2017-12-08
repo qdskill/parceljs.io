@@ -1,33 +1,33 @@
 # 📦 Packagers
 
-In Parcel, a `Packager` combines multiple `Asset`s together into a final output bundle. This happens in the main process after all assets have been processed, and a bundle tree has been created. Packagers are registered based on output file type, and assets that have generated that output type are sent to that packager for production of the final output file.
+在 Parcel 中，一个 `Packager` 将多个 `资源`合并到一个最终生成的文件束中。此过程发生在主进程中，且在所有资源被处理及文件束树被创建之后。Packager 的注册是基于输出文件类型，并且用于生成这种文件类型的资源会被送到 packager 中去生成最后生成的输出文件。
 
-## Packager Interface
+## Packager 接口
 
 ```javascript
 const {Packager} = require('parcel-bundler');
 
 class MyPackager extends Packager {
   async start() {
-    // optional. write file header if needed.
+    // 可选，写文件头部内容
     await this.dest.write(header);
   }
 
   async addAsset(asset) {
-    // required. write the asset to the output file.
+    // 必须。将资源写入生成文件。
     await this.dest.write(asset.generated.foo);
   }
 
   async end() {
-    // optional. write file trailer if needed.
+    // 可选，写文件尾内部内容。
     await this.dest.end(trailer);
   }
 }
 ```
 
-## Registering a Packager
+## 注册一个 Packager
 
-You can register your packager with a bundler using the `addPackager` method. It accepts a file type to register, and the path to your packager module.
+你可以用 `addPackager` 方法在打包工具中注册一个 packager。它接受一个文件类型及 packager 模块的所在路径用于注册。
 
 ```javascript
 const Bundler = require('parcel-bundler');

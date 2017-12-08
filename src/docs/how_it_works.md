@@ -1,7 +1,5 @@
 # 🛠 它如何运作
 
-Parcel transforms a tree of **assets** to a tree of **bundles**. Many other bundlers are fundamentally based around JavaScript assets, with other formats tacked on - e.g. inlined as strings into JS files. Parcel is file-type agnostic - it will work with any type of assets the way you'd expect, with no configuration. There are three steps to Parcel's bundling process.
-
 Parcel 将 **资源** 树转换成 **文件束** 树。许多其它的打包工具基本上是基于 JavaScript 资源，还有附加在其上的其它格式的资源。例如，在 JS 文件中内联成字符串。 Parcel 是对文件类型无感知的，它能按你所期待的方式那样与任意类型的资源工作，且毋须配置。Parcel 的打包流程共有三个步骤。
 
 ### 1. 构建资源树
