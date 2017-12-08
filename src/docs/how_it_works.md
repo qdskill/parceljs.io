@@ -1,19 +1,22 @@
-# 🛠 How It Works
+# 🛠 它如何运作
 
 Parcel transforms a tree of **assets** to a tree of **bundles**. Many other bundlers are fundamentally based around JavaScript assets, with other formats tacked on - e.g. inlined as strings into JS files. Parcel is file-type agnostic - it will work with any type of assets the way you'd expect, with no configuration. There are three steps to Parcel's bundling process.
 
-### 1. Constructing the Asset Tree
+Parcel 将 **资源** 树转换成 **文件束** 树。许多其它的打包工具基本上是基于 JavaScript 资源，还有附加在其上的其它格式的资源。例如，在 JS 文件中内联成字符串。 Parcel 是对文件类型无感知的，它能按你所期待的方式那样与任意类型的资源工作，且毋须配置。Parcel 的打包流程共有三个步骤。
 
-Parcel takes as input a single entry asset, which could be any type: a JS file, HTML, CSS, image, etc. There are various [asset types](asset_types.html) defined in Parcel which know how to handle specific file types. The assets are parsed, their dependencies are  extracted, and they are transformed to their final compiled form. This creates a tree of assets.
+### 1. 构建资源树
 
-### 2. Constructing the Bundle Tree
+Parcel 接受单个入口资源作为输入，可以是任意类型：一个 JS 文件，HTML， CSS，图片等等。有许多不同的[资源类型](asset_types.html)在 Parcel 中被定义，它知道如何去处理特定的文件类型。资源会被解析，资源的依赖会被提取，资源会被转换成最终编译好的形态。此过程创建了一个资源树。
 
-Once the asset tree has been constructed, the assets are placed into a bundle tree. A bundle is created for the entry asset, and child bundles are created for dynamic `import()`s, which cause code splitting to occur.
+### 2. 构建文件束树
 
-Sibling bundles are created when assets of a different type are imported, for example if you imported a CSS file from JavaScript, it would be placed into a sibling bundle to the corresponding JavaScript.
+一旦资源树被构建好，资源会被放置在文件束树中。首先一个入口资源会被创建成一个文件束，然后动态的 `import()` 会被创建成子文件束
+，这引发了代码的拆分。
 
-If an asset is required in more than one bundle, it is hoisted up to the nearest common ancestor in the bundle tree so it is not included more than once.
+当不同类型的文件资源被引入，兄弟文件束就会被创建。例如你在 JavaScript 中引入了 CSS 文件，那它会被放置在一个与 JavaScript 文件对应的兄弟文件束中。
 
-### 3. Packaging
+如果资源被多于一个文件束引用，它会被提升到文件束树中最近的公共祖先中，这样该资源就不会被多次打包。
 
-After the bundle tree is constructed, each bundle is written to a file by a [packager](packagers.html) specific to the file type. The packagers know how to combine the code from each asset together into the final file that is loaded by a browser.
+### 3. 打包
+
+在文件束树被构建之后，每个文件束都会被 [packager](packagers.html) 写到一个特定文件类型的文件中。packagers 知道如何从每个资源中将代码合并起来，生成到最终被浏览器加载的文件中。
