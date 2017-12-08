@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>🐠 Transforms</title>
+  <title>🐠 转换(Transforms)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link type="text/css" rel="stylesheet" href="assets/style.css" />
   <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
@@ -44,19 +44,19 @@
         <li><a href="plugins.html">🔌 插件</a></li>
       </ul>
     </nav>
-    <main><h1 id="🐠-transforms"><a class="header-link" href="#🐠-transforms"></a>🐠 Transforms</h1>
-<p>While many bundlers require you to install and configure plugins to transform assets, Parcel has support for many common transforms and transpilers built in out of the box. You can transform JavaScript using <a href="https://babeljs.io">Babel</a>, CSS using <a href="http://postcss.org">PostCSS</a>, and HTML using <a href="https://github.com/posthtml/posthtml">PostHTML</a>. Parcel automatically runs these transforms when it finds a configuration file (e.g. <code>.babelrc</code>, <code>.postcssrc</code>) in a module.</p>
-<p>This even works in third-party <code>node_modules</code>: if a configuration file is published as part of the package, the transform is automatically turned on for that module only. This keeps bundling fast since only modules that need to be transformed are processed. It also means that you don&#39;t need to manually configure the transforms to include and exclude certain files, or know how third party code is built in order to use it in your application.</p>
+    <main><h1 id="🐠-转换(transforms)"><a class="header-link" href="#🐠-转换(transforms)"></a>🐠 转换(Transforms)</h1>
+<p>许多打包工具需要你安装和配置插件来转换资源，Parcel 支持许多开箱即用的转换器和内置的编译器。您可以使用 <a href="https://babeljs.cn">Babel</a> 转换 JavaScript ，使用 <a href="http://postcss.org">PostCSS</a> 转换 CSS ，使用 <a href="https://github.com/posthtml/posthtml">PostHTML</a> 转换 HTML。Parcel 在模块中找到配置文件 (例如 .babelrc, .postcssrc) 时会自动运行并进行转换。</p>
+<p>这甚至可以在第三方 <code>node_modules</code> 中运行: 如果配置文件作为程序包的一部分发布，则仅为该模块自动启用转换。由于只需要处理需要转换的模块，因此可以快速打包。这也意味着你不需要手动配置转换，使其包含和排除某些文件，也不需要知道如何构建第三方代码，以便在你的应用程序中使用它。</p>
 <h2 id="babel"><a class="header-link" href="#babel"></a>Babel</h2>
-<p><a href="https://babeljs.io">Babel</a> is a popular transpiler for JavaScript, with a large plugin ecosystem. Using Babel with Parcel works the same way as using it standalone or with other bundlers.</p>
-<p>Install presets and plugins in your app:</p>
-<pre class="hljs"><code>yarn add babel-preset-env</code></pre><p>Then, create a <code>.babelrc</code>:</p>
+<p><a href="https://babeljs.cn">Babel</a> 是一个流行的 JavaScript 转换器，拥有大型的插件生态系统。Babel 与 Parcel 一起使用的方式与单独使用或与其他打包工具一起使用的方式相同。</p>
+<p>在你的应用程序中安装 presets 和 plugins :</p>
+<pre class="hljs"><code>yarn add babel-preset-env</code></pre><p>接着， 创建一个 <code>.babelrc</code>:</p>
 <pre class="hljs"><code>{
   <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"env"</span>]
 }</code></pre><h2 id="postcss"><a class="header-link" href="#postcss"></a>PostCSS</h2>
-<p><a href="http://postcss.org">PostCSS</a> is a tool for transforming CSS with plugins, like <a href="https://github.com/postcss/autoprefixer">autoprefixer</a>, <a href="http://cssnext.io/">cssnext</a>, and <a href="https://github.com/css-modules/css-modules">CSS Modules</a>. You can configure PostCSS with Parcel by creating a configuration file using one of these names: <code>.postcssrc</code> (JSON), <code>.postcssrc.js</code>, or <code>postcss.config.js</code>.</p>
-<p>Install plugins in your app:</p>
-<pre class="hljs"><code>yarn add postcss-modules autoprefixer</code></pre><p>Then, create a <code>.postcssrc</code>:</p>
+<p><a href="http://postcss.org">PostCSS</a> 是一个使用插件转换 CSS 的工具， 例如 <a href="https://github.com/postcss/autoprefixer">autoprefixer</a>，<a href="http://cssnext.io/">cssnext</a> 以及 <a href="https://github.com/css-modules/css-modules">CSS Modules</a> 。你可以使用这些名称之一创建配置，从而达到使用 Parcel 配置 PostCSS 的目的: <code>.postcssrc</code> (JSON)，<code>.postcssrc.js</code>， 或 <code>postcss.config.js</code>.</p>
+<p>在你应用程序中安装 plugins:</p>
+<pre class="hljs"><code>yarn add postcss-modules autoprefixer</code></pre><p>接着，创建一个 <code>.postcssrc</code> 文件:</p>
 <pre class="hljs"><code>{
   <span class="hljs-attr">"modules"</span>: <span class="hljs-literal">true</span>,
   <span class="hljs-attr">"plugins"</span>: {
@@ -64,21 +64,21 @@
       <span class="hljs-attr">"grid"</span>: <span class="hljs-literal">true</span>
     }
   }
-}</code></pre><p>Plugins are specified in the <code>plugins</code> object as keys, and options are defined using object values. If there are no options for a plugin, just set it to <code>true</code> instead.</p>
-<p>Target browsers for Autoprefixer, cssnext and other tools can be specified in <code>.browserslistrc</code> file:</p>
+}</code></pre><p>Plugins 在 <code>plugins</code> 对象中被指定为 key，并使用对象的值定义选项。如果插件没有选项，只需将其设置为 <code>true</code> 即可。</p>
+<p>可以在 <code>.browserslistrc</code> 中指定 autoprefixer、cssnext 和目标浏览器的其他工具:</p>
 <pre class="hljs"><code>&gt; <span class="hljs-number">1</span>%
-last <span class="hljs-number">2</span> versions</code></pre><p>CSS Modules are enabled slightly differently using the a top-level <code>modules</code> key. This is because Parcel needs to have special support for CSS Modules since they export an object to be included in the JavaScript bundle as well. Note that you still need to install <code>postcss-modules</code> in your project.</p>
+last <span class="hljs-number">2</span> versions</code></pre><p>使用顶级 <code>modules</code> 键时，CSS 模块启用方式稍有不同。这是因为 Parcel 需要对 CSS 模块提供特殊支持，因为它们也导出一个包含在 JavaScript 包中的对象。请注意，你仍然需要在你的项目中安装 <code>postcss-modules</code> 。</p>
 <h2 id="posthtml"><a class="header-link" href="#posthtml"></a>PostHTML</h2>
-<p><a href="https://github.com/posthtml/posthtml">PostHTML</a> is a tool for transforming HTML with plugins. You can configure PostHTML with Parcel by creating a configuration file using one of these names: <code>.posthtmlrc</code> (JSON), <code>posthtmlrc.js</code>, or <code>posthtml.config.js</code>.</p>
-<p>Install plugins in your app:</p>
-<pre class="hljs"><code>yarn add posthtml-img-autosize</code></pre><p>Then, create a <code>.posthtmlrc</code>:</p>
+<p><a href="https://github.com/posthtml/posthtml">PostHTML</a> 是一个通过插件转换 HTML 的工具。你可以使用这些名称之一创建配置，从而达到使用 Parcel 配置 PostHTML 的目的: <code>.posthtmlrc</code> (JSON) ，<code>posthtmlrc.js</code> ，或者 <code>posthtml.config.js</code>。</p>
+<p>在你的应用程序中安装 plugin:</p>
+<pre class="hljs"><code>yarn add posthtml-img-autosize</code></pre><p>接着，创建一个 <code>.posthtmlrc</code>:</p>
 <pre class="hljs"><code>{
   <span class="hljs-attr">"plugins"</span>: {
     <span class="hljs-attr">"posthtml-img-autosize"</span>: {
       <span class="hljs-attr">"root"</span>: <span class="hljs-string">"./images"</span>
     }
   }
-}</code></pre><p>Plugins are specified in the <code>plugins</code> object as keys, and options are defined using object values. If there are no options for a plugin, just set it to <code>true</code> instead.</p>
+}</code></pre><p>Plugins 在 <code>plugins</code> 对象中指定为 key，并且选项使用对象值定义。如果插件没有选项，只需将其设置为 <code>true</code> 即可。</p>
     </main>
   </div>
   <script>

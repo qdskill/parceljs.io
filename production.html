@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>✨ Production</title>
+  <title>✨ 生产模式(Production)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link type="text/css" rel="stylesheet" href="assets/style.css" />
   <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
@@ -44,10 +44,10 @@
         <li><a href="plugins.html">🔌 插件</a></li>
       </ul>
     </nav>
-    <main><h1 id="✨-production"><a class="header-link" href="#✨-production"></a>✨ Production</h1>
-<p>When it comes time to bundle your application for production, you can use Parcel&#39;s production mode.</p>
-<pre class="hljs"><code>parcel build entry.js</code></pre><p>This disables watch mode and hot module replacement so it will only build once. It also enables the minifier for all output bundles to reduce file size. The minifiers used by Parcel are <a href="https://github.com/mishoo/UglifyJS2/">uglify-js</a> for JavaScript, <a href="http://cssnano.co">cssnano</a> for CSS, and <a href="https://github.com/posthtml/htmlnano">htmlnano</a> for HTML.</p>
-<p>Enabling production mode also sets the <code>NODE_ENV=production</code> environment variable. Large libraries like React have development only debugging features which are disabled by setting this environment variable, which results in smaller and faster builds for production.</p>
+    <main><h1 id="✨-生产模式(production)"><a class="header-link" href="#✨-生产模式(production)"></a>✨ 生产模式(Production)</h1>
+<p>当需要绑定应用程序的时候，你可以使用 Parcel 的生产模式。</p>
+<pre class="hljs"><code>parcel build entry.js</code></pre><p>这将关闭监听模式和热模块替换，所有它只会简历一次。它还会开启 minifier 来减少输出包文件的大小。Parcel 使用的 minifiers 有 JavaScript 的 <a href="https://github.com/mishoo/UglifyJS2/">uglify-js</a> ，CSS 的 <a href="http://cssnano.co">cssnano</a> 还有 HTML 的 <a href="https://github.com/posthtml/htmlnano">htmlnano</a>。</p>
+<p>启动生产模式还要设置环境变量 <code>NODE_ENV=production</code> 。像 Rect 这种只用开发调试功能的大型库，通过设置这个环境变量来禁用调试功能，从而构建的更小更快。</p>
     </main>
   </div>
   <script>

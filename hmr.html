@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>🔥 Hot Module Replacement</title>
+  <title>🔥 热模块替换(HMR)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link type="text/css" rel="stylesheet" href="assets/style.css" />
   <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
@@ -44,17 +44,17 @@
         <li><a href="plugins.html">🔌 插件</a></li>
       </ul>
     </nav>
-    <main><h1 id="🔥-hot-module-replacement"><a class="header-link" href="#🔥-hot-module-replacement"></a>🔥 Hot Module Replacement</h1>
-<p>Hot Module Replacement (HMR) improves the development experience by automatically updating modules in the browser at runtime without needing a whole page refresh. This means that application state can be retained as you change small things. Parcel&#39;s HMR implementation supports both JavaScript and CSS assets out of the box. HMR is automatically disabled when bundling in production mode.</p>
-<p>As you save files, Parcel rebuilds what changed and sends an update to any running clients containing the new code. The new code then replaces the old version, and is re-evaluated along with all parents. You can hook into this process using the <code>module.hot</code> API, which can notify your code when a module is about to be disposed, or when a new version comes in. Projects like <a href="https://github.com/gaearon/react-hot-loader">react-hot-loader</a> can help with this process, and work out of the box with Parcel.</p>
-<p>There are two methods to know about: <code>module.hot.accept</code> and <code>module.hot.dispose</code>. You call <code>module.hot.accept</code> with a callback function which is executed when that module or any of its dependencies are updated. <code>module.hot.dispose</code> accepts a callback which is called when that module is about to be replaced.</p>
+    <main><h1 id="🔥-热模块替换(hmr)"><a class="header-link" href="#🔥-热模块替换(hmr)"></a>🔥 热模块替换(HMR)</h1>
+<p>热模块替换 (HMR) 在运行时自动更新浏览器中的模块优化开发体验，无需刷新整个页面。这意味着在您代码小幅更改时可以保留应用程序的状态。Parcel 的 HMR 实现支持开箱即用的 JavaScript 和 CSS 资源。HMR 构建在生产模式下时自动禁用.</p>
+<p>保存文件时，Parcel 将重新编译所更改的内容，并将包含新代码的更新发送到任何正在运行的客户端。新的代码会替换旧版本的代码，并与所有 parents 重新评估(译者注: 此句翻译上有些奇怪，大家有更好的翻译欢迎 PR )。你可以使用 <code>module.hot</code> API 对此过程进行 hook ，编写这段代码会在你处理模块时或有新版本进入时通知您。类似项目 <a href="https://github.com/gaearon/react-hot-loader">react-hot-loader</a> 可以帮助你完成该过程，并通过 Parcel 实现开箱即用。</p>
+<p>有两种已知方法: <code>module.hot.accept</code> 和 <code>module.hot.dispose</code>。你可以调用 <code>module.hot.accept</code> 并赋予一个回调函数，该函数会在模块或其他依赖项被更新时执行。当该模块即将被替换时，<code>module.hot.dispose</code> 回调函数会被调用。</p>
 <pre class="hljs"><code><span class="hljs-keyword">if</span> (<span class="hljs-built_in">module</span>.hot) {
   <span class="hljs-built_in">module</span>.hot.dispose(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-    <span class="hljs-comment">// module is about to be replaced</span>
+    <span class="hljs-comment">// 模块即将被替换时</span>
   });
 
   <span class="hljs-built_in">module</span>.hot.accept(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-    <span class="hljs-comment">// module or one of its dependencies was just updated</span>
+    <span class="hljs-comment">// 模块或其依赖项之一刚刚更新时</span>
   });
 }</code></pre>    </main>
   </div>
