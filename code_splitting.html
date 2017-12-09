@@ -50,9 +50,11 @@
 <p>以下示例展示了如何使用动态导入(dynamic import)来按需加载应用程序的子页面。</p>
 <pre class="hljs"><code><span class="hljs-keyword">import</span>(<span class="hljs-string">'./pages/about'</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">page</span>) </span>{
   <span class="hljs-comment">// 渲染页面</span>
+  page.default();
 });</code></pre><p>因为 <code>import()</code> 返回一个Promise，所以你也可以使用 async/await 语法。不过，在浏览器广泛支持它之前，你可能需要配置 Babel 来转换语法。</p>
 <pre class="hljs"><code><span class="hljs-keyword">const</span> page = <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">'./pages/about'</span>);
-<span class="hljs-comment">// 渲染页面</span></code></pre><p>动态导入也会在 Parcel 中延迟加载，因此你仍然需要将所有的 <code>import()</code> 调用放在文件的顶部，并且在使用子捆绑包之前，它们不会被加载。以下示例展示如何动态地延迟加载应用程序的子页面。</p>
+<span class="hljs-comment">// 渲染页面</span>
+page.default();</code></pre><p>动态导入也会在 Parcel 中延迟加载，因此你仍然需要将所有的 <code>import()</code> 调用放在文件的顶部，并且在使用子捆绑包之前，它们不会被加载。以下示例展示如何动态地延迟加载应用程序的子页面。</p>
 <pre class="hljs"><code><span class="hljs-comment">// 设置页面名称到动态引入的映射中。</span>
 <span class="hljs-comment">// 在使用前，这些页面都不会被加载。</span>
 <span class="hljs-keyword">const</span> pages = {
@@ -63,7 +65,7 @@
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">renderPage</span>(<span class="hljs-params">page</span>) </span>{
   <span class="hljs-comment">// 懒加载请求页面。</span>
   <span class="hljs-keyword">const</span> render = <span class="hljs-keyword">await</span> pages[page];
-  <span class="hljs-keyword">return</span> render();
+  <span class="hljs-keyword">return</span> page.default();
 }</code></pre><p><strong>注意:</strong> 如果你仍然想在本地浏览器中使用不支持的语法 async/await ，切记需要在你的应用程序引入 <code>babel-polyfill</code> 或在你的库中引入 <code>babel-runtime</code> + <code>babel-plugin-transform-runtime</code> 。</p>
 <pre class="hljs"><code>yarn add babel-polyfill</code></pre><pre class="hljs"><code><span class="hljs-keyword">import</span> <span class="hljs-string">"babel-polyfill"</span>;
 <span class="hljs-keyword">import</span> <span class="hljs-string">"./app"</span>;</code></pre><p>请参阅 <a href="http://babeljs.cn/docs/usage/polyfill">babel-polyfill</a> 和 <a href="http://babeljs.cn/docs/plugins/transform-runtime">babel-runtime</a> 的文档。</p>
