@@ -7,9 +7,15 @@ Parcel 支持零配置代码拆分，并且开箱即用。这允许您将应用�
 以下示例展示了如何使用动态导入(dynamic import)来按需加载应用程序的子页面。
 
 ```javascript
+// pages/about.js
+export function render() {
+  // 渲染页面
+}
+```
+```javascript
 import('./pages/about').then(function (page) {
   // 渲染页面
-  page.default();
+  page.render();
 });
 ```
 
@@ -18,7 +24,7 @@ import('./pages/about').then(function (page) {
 ```javascript
 const page = await import('./pages/about');
 // 渲染页面
-page.default();
+page.render();
 ```
 
 动态导入也会在 Parcel 中延迟加载，因此你仍然需要将所有的 `import()` 调用放在文件的顶部，并且在使用子捆绑包之前，它们不会被加载。以下示例展示如何动态地延迟加载应用程序的子页面。
@@ -33,8 +39,8 @@ const pages = {
 
 async function renderPage(page) {
   // 懒加载请求页面。
-  const render = await pages[page];
-  return page.default();
+  const page = await pages[page];
+  return page.render();
 }
 ```
 

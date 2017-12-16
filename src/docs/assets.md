@@ -6,7 +6,6 @@ Parcel 是基于资源的，资源可以代表任意文件, 并且 Parcel 对 Ja
 
 JavaScript 是最传统的 Web 打包文件类型。 Parcel 同时支持 CommonJS 和 ES6 两种模块语法来导入文件。它也支持动态的 `import()` 函数语法异步加载模块，这一点会在[代码拆分](code_splitting.html)部分有讨论。
 
-
 ```javascript
 // 使用 CommonJS 语法导入模块
 const dep = require('./path/to/dep');
@@ -55,6 +54,17 @@ JavaScript 文件或 HTML 文件都能导入 CSS 资源，并且能通过 `@impo
 ```
 
 除了普通的 CSS，其他的 LESS，SASS，以及 Stylus 等CSS预处理器语言也是支持的，并且执行方法与之相同的。
+
+## SCSS
+编译 SCSS 需要 `node-sass` 模块. 通过 npm 安装它:
+```
+npm install node-sass
+```
+一旦安装了 `node-sass`，你就可以在 JavaScript 文件中引入 SCSS 文件。
+```
+import './custom.scss'
+```
+SCSS 文件中的依赖可以使用 `@import` 语句。
 
 ## HTML
 
