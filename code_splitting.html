@@ -44,6 +44,7 @@
         <li><a href="code_splitting.html">✂️ 代码拆分</a></li>
         <li><a href="hmr.html">🔥 热模块替换</a></li>
         <li><a href="production.html">✨ 生产环境</a></li>
+        <li><a href="recipes.html">🍰 配方</a></li>
       </ul>
       <h3>进阶</h3>
       <ul>
@@ -57,13 +58,16 @@
 <p>Parcel 支持零配置代码拆分，并且开箱即用。这允许您将应用程序的代码拆分成单独的包，这些包可以按需加载，这意味着更小的初始包大小和更短的加载时间。随着用户在应用程序中浏览相应的模块需要加载，Parcel 会自动负责按需加载子捆绑包。</p>
 <p>代码拆分时通过使用动态 <code>import()</code> 函数的<a href="https://github.com/tc39/proposal-dynamic-import">语法提案</a>来控制的，该提案与普通 <code>import</code> 语句或 <code>require</code> 函数的类似，但返回一个 Promise 对象。这意味着模块时异步加载的。</p>
 <p>以下示例展示了如何使用动态导入(dynamic import)来按需加载应用程序的子页面。</p>
-<pre class="hljs"><code><span class="hljs-keyword">import</span>(<span class="hljs-string">'./pages/about'</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">page</span>) </span>{
+<pre class="hljs"><code><span class="hljs-comment">// pages/about.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-comment">// 渲染页面</span>
-  page.default();
+}</code></pre><pre class="hljs"><code><span class="hljs-keyword">import</span>(<span class="hljs-string">'./pages/about'</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">page</span>) </span>{
+  <span class="hljs-comment">// 渲染页面</span>
+  page.render();
 });</code></pre><p>因为 <code>import()</code> 返回一个Promise，所以你也可以使用 async/await 语法。不过，在浏览器广泛支持它之前，你可能需要配置 Babel 来转换语法。</p>
 <pre class="hljs"><code><span class="hljs-keyword">const</span> page = <span class="hljs-keyword">await</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">'./pages/about'</span>);
 <span class="hljs-comment">// 渲染页面</span>
-page.default();</code></pre><p>动态导入也会在 Parcel 中延迟加载，因此你仍然需要将所有的 <code>import()</code> 调用放在文件的顶部，并且在使用子捆绑包之前，它们不会被加载。以下示例展示如何动态地延迟加载应用程序的子页面。</p>
+page.render();</code></pre><p>动态导入也会在 Parcel 中延迟加载，因此你仍然需要将所有的 <code>import()</code> 调用放在文件的顶部，并且在使用子捆绑包之前，它们不会被加载。以下示例展示如何动态地延迟加载应用程序的子页面。</p>
 <pre class="hljs"><code><span class="hljs-comment">// 设置页面名称到动态引入的映射中。</span>
 <span class="hljs-comment">// 在使用前，这些页面都不会被加载。</span>
 <span class="hljs-keyword">const</span> pages = {
@@ -73,8 +77,8 @@ page.default();</code></pre><p>动态导入也会在 Parcel 中延迟加载，�
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">renderPage</span>(<span class="hljs-params">page</span>) </span>{
   <span class="hljs-comment">// 懒加载请求页面。</span>
-  <span class="hljs-keyword">const</span> render = <span class="hljs-keyword">await</span> pages[page];
-  <span class="hljs-keyword">return</span> page.default();
+  <span class="hljs-keyword">const</span> page = <span class="hljs-keyword">await</span> pages[page];
+  <span class="hljs-keyword">return</span> page.render();
 }</code></pre><p><strong>注意:</strong> 如果你仍然想在本地浏览器中使用不支持的语法 async/await ，切记需要在你的应用程序引入 <code>babel-polyfill</code> 或在你的库中引入 <code>babel-runtime</code> + <code>babel-plugin-transform-runtime</code> 。</p>
 <pre class="hljs"><code>yarn add babel-polyfill</code></pre><pre class="hljs"><code><span class="hljs-keyword">import</span> <span class="hljs-string">"babel-polyfill"</span>;
 <span class="hljs-keyword">import</span> <span class="hljs-string">"./app"</span>;</code></pre><p>请参阅 <a href="http://babeljs.cn/docs/usage/polyfill">babel-polyfill</a> 和 <a href="http://babeljs.cn/docs/plugins/transform-runtime">babel-runtime</a> 的文档。</p>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🍰 配方(Recipes)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link type="text/css" rel="stylesheet" href="assets/style.css" />
+  <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
+  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
+  <!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-110647385-1');
+  </script>-->
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6b5f065a80e0af3ff54139cf0ae94d47";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>    
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">
+      <img class="parcel" src="assets/parcel.png" srcset="assets/parcel@2x.png 2x, assets/parcel@3x.png 3x" height="30">
+      <img class="type" src="assets/logo.svg" alt="Parcel">
+    </a>
+    <div class="links">
+      <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+    </div>
+  </header>
+  <div class="content">
+    <nav>
+      <ul>
+        <li><a href="getting_started.html">🚀 快速开始</a></li>
+        <li><a href="assets.html">📦 资源</a></li>
+        <li><a href="transforms.html">🐠 转换</a></li>
+        <li><a href="code_splitting.html">✂️ 代码拆分</a></li>
+        <li><a href="hmr.html">🔥 热模块替换</a></li>
+        <li><a href="production.html">✨ 生产环境</a></li>
+        <li><a href="recipes.html">🍰 配方</a></li>
+      </ul>
+      <h3>进阶</h3>
+      <ul>
+        <li><a href="how_it_works.html">🛠 它如何运作</a></li>
+        <li><a href="asset_types.html">📝 资源类型</a></li>
+        <li><a href="packagers.html">📦 Packagers</a></li>
+        <li><a href="plugins.html">🔌 插件</a></li>
+      </ul>
+    </nav>
+    <main><h1 id="🍰-配方(recipes)"><a class="header-link" href="#🍰-配方(recipes)"></a>🍰 配方(Recipes)</h1>
+<h2 id="react"><a class="header-link" href="#react"></a>React</h2>
+<p>首先需要安装 React 相关的依赖。</p>
+<p><a href="http://blog.jakoblind.no/react-parcel/">博客</a></p>
+<pre class="hljs"><code>npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save react</span>
+npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save react-dom</span>
+npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save-dev parcel-bundler</span>
+npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save-dev babel-preset-env</span>
+npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save-dev babel-preset-react</span></code></pre><p><sub>或者如果你安装了 Yarn 包管理器</sub></p>
+<pre class="hljs"><code>yarn <span class="hljs-keyword">add</span><span class="bash"> react
+</span>yarn <span class="hljs-keyword">add</span><span class="bash"> react-dom
+</span>yarn <span class="hljs-keyword">add</span><span class="bash"> --dev parcel-bundler
+</span>yarn <span class="hljs-keyword">add</span><span class="bash"> --dev babel-preset-env
+</span>yarn <span class="hljs-keyword">add</span><span class="bash"> --dev babel-preset-react</span></code></pre><p>然后确保以下 Babel 预设存在。</p>
+<pre class="hljs"><code> <span class="hljs-comment">// .babelrc</span>
+{
+  <span class="hljs-string">"presets"</span>: [<span class="hljs-string">"env"</span>, <span class="hljs-string">"react"</span>]
+}</code></pre><p>在 <code>package.json</code> 中添加 start 命令</p>
+<pre class="hljs"><code><span class="hljs-comment">// package.json</span>
+<span class="hljs-string">"scripts"</span>: {
+  <span class="hljs-string">"start"</span>: <span class="hljs-string">"parcel index.html"</span>
+}</code></pre><h2 id="preact"><a class="header-link" href="#preact"></a>Preact</h2>
+<p>首先需要安装 Preact 相关的依赖.</p>
+<pre class="hljs"><code>npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save preact</span>
+npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save preact-compat</span>
+npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save-dev parcel-bundler</span>
+npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save-dev babel-preset-env</span>
+npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save-dev babel-preset-preact</span></code></pre><p><sub>或者如果你安装了 Yarn 包管理器</sub></p>
+<pre class="hljs"><code>yarn <span class="hljs-keyword">add</span><span class="bash"> preact
+</span>yarn <span class="hljs-keyword">add</span><span class="bash"> preact-compat
+</span>yarn <span class="hljs-keyword">add</span><span class="bash"> --dev parcel-bundler
+</span>yarn <span class="hljs-keyword">add</span><span class="bash"> --dev babel-preset-env
+</span>yarn <span class="hljs-keyword">add</span><span class="bash"> --dev babel-preset-preact</span></code></pre><p>然后确保以下 Babel 预设存在.</p>
+<pre class="hljs"><code><span class="hljs-comment">// .babelrc</span>
+{
+  <span class="hljs-string">"presets"</span>: [<span class="hljs-string">"env"</span>, <span class="hljs-string">"preact"</span>]
+}</code></pre><p>在 <code>package.json</code> 中添加 start 命令</p>
+<pre class="hljs"><code><span class="hljs-comment">// package.json</span>
+<span class="hljs-string">"scripts"</span>: {
+  <span class="hljs-string">"start"</span>: <span class="hljs-string">"parcel index.html"</span>
+}</code></pre>    </main>
+  </div>
+  <script>
+    (function () {
+      var activeLink = Array.from(document.querySelectorAll('nav a')).find(function (a) {
+        return a.href === window.location.href;
+      });
+
+      activeLink.classList.add('selected');
+    })();
+  </script>
+</body>
+</html>

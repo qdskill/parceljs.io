@@ -44,6 +44,7 @@
         <li><a href="code_splitting.html">✂️ 代码拆分</a></li>
         <li><a href="hmr.html">🔥 热模块替换</a></li>
         <li><a href="production.html">✨ 生产环境</a></li>
+        <li><a href="recipes.html">🍰 配方</a></li>
       </ul>
       <h3>进阶</h3>
       <ul>
@@ -55,12 +56,26 @@
     </nav>
     <main><h1 id="✨-生产环境(production)"><a class="header-link" href="#✨-生产环境(production)"></a>✨ 生产环境(Production)</h1>
 <p>当需要绑定应用程序的时候，你可以使用 Parcel 的生产模式。</p>
-<pre class="hljs"><code>parcel build entry.js</code></pre><p>若要改变捆绑包的输出目录，你可以使用 <code>--out-dir [目录名]</code> (默认为 <code>dist</code>)</p>
-<pre class="hljs"><code>parcel build entry.js --out-dir build/output
-<span class="hljs-comment"># 或使用简写 -d:</span>
-parcel build entry.js <span class="hljs-_">-d</span> build/output</code></pre><p>这将关闭监听模式和热模块替换，所以它只会编译一次。它还会开启 minifier 来减少输出包文件的大小。Parcel 使用的 minifiers 有 JavaScript 的 <a href="https://github.com/mishoo/UglifyJS2/">uglify-js</a> ，CSS 的 <a href="http://cssnano.co">cssnano</a> 还有 HTML 的 <a href="https://github.com/posthtml/htmlnano">htmlnano</a>。</p>
+<pre class="hljs"><code>parcel build entry.js</code></pre><p>这将关闭监听模式和热模块替换，所以它只会编译一次。它还会开启 minifier 来减少输出包文件的大小。Parcel 使用的 minifiers 有 JavaScript 的 <a href="https://github.com/mishoo/UglifyJS2/tree/harmony">uglify-es</a> ，CSS 的 <a href="http://cssnano.co">cssnano</a> 还有 HTML 的 <a href="https://github.com/posthtml/htmlnano">htmlnano</a>。</p>
 <p>启动生产模式还要设置环境变量 <code>NODE_ENV=production</code> 。像 React 这种只用开发调试功能的大型库，通过设置这个环境变量来禁用调试功能，从而构建的更小更快。</p>
-    </main>
+<h3 id="options"><a class="header-link" href="#options"></a>Options</h3>
+<h4 id="设置输出目录"><a class="header-link" href="#设置输出目录"></a>设置输出目录</h4>
+<p>Default: &quot;dist&quot;</p>
+<pre class="hljs"><code>parcel build entry.js --out-dir build/output
+或者
+parcel build entry.js <span class="hljs-_">-d</span> build/output</code></pre><pre class="hljs"><code>root
+-<span class="ruby"> build
+</span>-<span class="ruby"> - output
+</span>-<span class="ruby"> - - entry.js</span></code></pre><h4 id="设置要提供服务的公共-url"><a class="header-link" href="#设置要提供服务的公共-url"></a>设置要提供服务的公共 URL</h4>
+<p>Default: --out-dir option</p>
+<pre class="hljs"><code>parcel build entry.js --public-url ./</code></pre><p>将输出到:</p>
+<pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"1a2b3c4d.css"</span>&gt;</span>
+or
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"e5f6g7h8.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><h4 id="禁用压缩"><a class="header-link" href="#禁用压缩"></a>禁用压缩</h4>
+<p>Default: minification enabled</p>
+<pre class="hljs"><code>parcel build <span class="hljs-keyword">entry</span>.js <span class="hljs-comment">--no-minify</span></code></pre><h4 id="禁用文件系统缓存"><a class="header-link" href="#禁用文件系统缓存"></a>禁用文件系统缓存</h4>
+<p>Default: cache enabled</p>
+<pre class="hljs"><code>parcel build entry.js --no-cache</code></pre>    </main>
   </div>
   <script>
     (function () {
