@@ -89,7 +89,17 @@ last <span class="hljs-number">2</span> versions</code></pre><p>使用顶级 <co
     }
   }
 }</code></pre><p>Plugins 在 <code>plugins</code> 对象中指定为 key，并且选项使用对象值定义。如果插件没有选项，只需将其设置为 <code>true</code> 即可。</p>
-    </main>
+<h2 id="typescript"><a class="header-link" href="#typescript"></a>TypeScript</h2>
+<p><a href="https://www.typescriptlang.org/">TypeScript</a> 是 JavaScript 类型的超集，它可以编译成普通的 JavaScript，同时也支持现代 ES2015+ 的特性。转换 TypeScript 无需任何额外配置，开箱即用。</p>
+<pre class="hljs"><code><span class="hljs-comment">&lt;!-- index.html --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./index.ts"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><pre class="hljs"><code><span class="hljs-comment">// index.ts</span>
+<span class="hljs-keyword">import</span> message from <span class="hljs-string">"./message"</span>;
+<span class="hljs-built_in">console</span>.log(message);</code></pre><pre class="hljs"><code><span class="hljs-comment">// message.ts</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">"Hello, world"</span>;</code></pre>    </main>
   </div>
   <script>
     (function () {
