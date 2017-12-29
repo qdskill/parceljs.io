@@ -1,8 +1,8 @@
 # 🚀 快速开始
 
-Parcel 是一个网络应用打包工具, 适用于经验不同的开发者. 它利用多核处理提供了极快的速度, 并且不需要任何配置.
+Parcel 是一个网络应用打包工具，适用于经验不同的开发者。它利用多核处理提供了极快的速度，并且不需要任何配置。
 
-首先通过 Yarn 或者 npm 安装 Parcel :
+首先通过 Yarn 或者 npm 安装 Parcel ：
 
 Yarn:
 ```bash
@@ -14,7 +14,7 @@ npm:
 npm install -g parcel-bundler
 ```
 
-在你正在使用的项目目录下创建一个 package.json 文件:
+在你正在使用的项目目录下创建一个 package.json 文件：
 
 ```bash
 yarn init -y
@@ -40,7 +40,7 @@ Parcel 可以使用任何类型的文件作为入口，但是最好还是使用 
 console.log("hello world");
 ```
 
-Parcel 内置了一个当你改变文件能够自动重建应用的开发服务器，而且为了实现快速开发该开发服务器支持[热模块替换](hmr.html)。只需要在入口文件指出：
+Parcel 内置了一个当你改变文件时能够自动重建应用的开发服务器，而且为了实现快速开发，该开发服务器支持[热模块替换](hmr.html)。只需要在入口文件指出：
 
 ```bash
 parcel index.html
