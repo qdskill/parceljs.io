@@ -56,7 +56,7 @@
     </nav>
     <main><h1 id="✂️-代码拆分(code-splitting)"><a class="header-link" href="#✂️-代码拆分(code-splitting)"></a>✂️ 代码拆分(Code Splitting)</h1>
 <p>Parcel 支持零配置代码拆分，并且开箱即用。这允许您将应用程序的代码拆分成单独的包，这些包可以按需加载，这意味着更小的初始包大小和更短的加载时间。随着用户在应用程序中浏览相应的模块需要加载，Parcel 会自动负责按需加载子捆绑包。</p>
-<p>代码拆分时通过使用动态 <code>import()</code> 函数的<a href="https://github.com/tc39/proposal-dynamic-import">语法提案</a>来控制的，该提案与普通 <code>import</code> 语句或 <code>require</code> 函数的类似，但返回一个 Promise 对象。这意味着模块时异步加载的。</p>
+<p>代码拆分时通过使用动态 <code>import()</code> 函数的<a href="https://github.com/tc39/proposal-dynamic-import">语法提案</a>来控制的，该提案与普通 <code>import</code> 语句或 <code>require</code> 函数的类似，但返回一个 Promise 对象。这意味着模块是异步加载的。</p>
 <p>以下示例展示了如何使用动态导入(dynamic import)来按需加载应用程序的子页面。</p>
 <pre class="hljs"><code><span class="hljs-comment">// pages/about.js</span>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render</span>(<span class="hljs-params"></span>) </span>{
@@ -79,7 +79,7 @@ page.render();</code></pre><p>动态导入也会在 Parcel 中延迟加载，因
   <span class="hljs-comment">// 懒加载请求页面。</span>
   <span class="hljs-keyword">const</span> page = <span class="hljs-keyword">await</span> pages[page];
   <span class="hljs-keyword">return</span> page.render();
-}</code></pre><p><strong>注意:</strong> 如果你仍然想在本地浏览器中使用不支持的语法 async/await ，切记需要在你的应用程序引入 <code>babel-polyfill</code> 或在你的库中引入 <code>babel-runtime</code> + <code>babel-plugin-transform-runtime</code> 。</p>
+}</code></pre><p><strong>注意：</strong> 如果你仍然想在本地浏览器中使用不支持的语法 async/await ，切记需要在你的应用程序引入 <code>babel-polyfill</code> 或在你的库中引入 <code>babel-runtime</code> + <code>babel-plugin-transform-runtime</code> 。</p>
 <pre class="hljs"><code>yarn add babel-polyfill</code></pre><pre class="hljs"><code><span class="hljs-keyword">import</span> <span class="hljs-string">"babel-polyfill"</span>;
 <span class="hljs-keyword">import</span> <span class="hljs-string">"./app"</span>;</code></pre><p>请参阅 <a href="http://babeljs.cn/docs/usage/polyfill">babel-polyfill</a> 和 <a href="http://babeljs.cn/docs/plugins/transform-runtime">babel-runtime</a> 的文档。</p>
     </main>

@@ -55,7 +55,7 @@
       </ul>
     </nav>
     <main><h1 id="📦-资源(assets)"><a class="header-link" href="#📦-资源(assets)"></a>📦 资源(Assets)</h1>
-<p>Parcel 是基于资源的，资源可以代表任意文件, 并且 Parcel 对 JavaScript，CSS，HTML 文件有更多的支持。 Parcel 会自动地分析这些文件和包中引用的依赖。相同类型的资源会被组合到同一捆绑包中。如果导入其他类型的资源（例如：你在 JS 文件中导入 CSS 文件），Parcel会启动子捆绑包，并在父捆绑包中保留对它的引用。这一点将在以下部分进行说明。</p>
+<p>Parcel 是基于资源的，资源可以代表任意文件，并且 Parcel 对 JavaScript，CSS，HTML 文件有更多的支持。 Parcel 会自动地分析这些文件和包中引用的依赖。相同类型的资源会被组合到同一捆绑包中。如果导入其他类型的资源（例如：你在 JS 文件中导入 CSS 文件），Parcel会启动子捆绑包，并在父捆绑包中保留对它的引用。这一点将在以下部分进行说明。</p>
 <h2 id="javascript"><a class="header-link" href="#javascript"></a>JavaScript</h2>
 <p>JavaScript 是最传统的 Web 打包文件类型。 Parcel 同时支持 CommonJS 和 ES6 两种模块语法来导入文件。它也支持动态的 <code>import()</code> 函数语法异步加载模块，这一点会在<a href="code_splitting.html">代码拆分</a>部分有讨论。</p>
 <pre class="hljs"><code><span class="hljs-comment">// 使用 CommonJS 语法导入模块</span>
@@ -85,13 +85,13 @@
 <span class="hljs-selector-class">.test</span> {
   <span class="hljs-comment">/* 引用图像文件 */</span>
   <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">'./images/background.png'</span>);
-}</code></pre><p>除了普通的 CSS，其他的 LESS，SASS，以及 Stylus 等CSS预处理器语言也是支持的，并且执行方法与之相同的。</p>
+}</code></pre><p>除了普通的 CSS，其他的 LESS，SASS，以及 Stylus 等CSS预处理器语言也是支持的，并且执行方法是与之相同的。</p>
 <h2 id="scss"><a class="header-link" href="#scss"></a>SCSS</h2>
 <p>编译 SCSS 需要 <code>node-sass</code> 模块. 通过 npm 安装它:</p>
 <pre class="hljs"><code>npm install <span class="hljs-keyword">node</span><span class="hljs-title">-sass</span></code></pre><p>一旦安装了 <code>node-sass</code>，你就可以在 JavaScript 文件中引入 SCSS 文件。</p>
 <pre class="hljs"><code><span class="hljs-keyword">import</span> <span class="hljs-string">'./custom.scss'</span></code></pre><p>SCSS 文件中的依赖可以使用 <code>@import</code> 语句。</p>
 <h2 id="html"><a class="header-link" href="#html"></a>HTML</h2>
-<p>HTML 资源是提供给 Parcel 常用入口文件，但也可以被 JavaScript 文件引用，例如：提供链接给其他页面。如上所述，提取并编译脚本，样式，媒体以及其他的 HTML 文件的 URL 。引用会在 HTML 中被重写，以便链接到正确的输出文件。全部的文件名都应该和当前的 HTML 文件相关联。</p>
+<p>HTML 资源是提供给 Parcel 常用入口文件，但也可以被 JavaScript 文件引用，例如：提供链接给其他页面。如上所述，提取并编译脚本、样式、媒体以及其他的 HTML 文件的 URL 。引用会在 HTML 中被重写，以便链接到正确的输出文件。全部的文件名都应该和当前的 HTML 文件相关联。</p>
 <pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
   <span class="hljs-comment">&lt;!-- 引入图像文件 --&gt;</span>

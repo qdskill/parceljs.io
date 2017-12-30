@@ -62,9 +62,9 @@
 <pre class="hljs"><code><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">bundler</span>) </span>{
   bundler.addAssetType(<span class="hljs-string">'ext'</span>, <span class="hljs-built_in">require</span>.resolve(<span class="hljs-string">'./MyAsset'</span>));
   bundler.addPackager(<span class="hljs-string">'foo'</span>, <span class="hljs-built_in">require</span>.resolve(<span class="hljs-string">'./MyPackager'</span>));
-};</code></pre><p>请发布这个包到 npm，并使用 <code>parcel-plugin-</code> 前缀，那它就会将后文提到的那样被自动检测和加载。</p>
+};</code></pre><p>请发布这个包到 npm，并使用 <code>parcel-plugin-</code> 前缀，那它就会像后文提到的那样被自动检测和加载。</p>
 <h2 id="使用插件"><a class="header-link" href="#使用插件"></a>使用插件</h2>
-<p>在 Parcel 中使用插件是前所未有地简单。你所做的，只是将它们安装好并保存到 <code>package.json</code> 中。插件需要以 <code>parcel-plugin-</code> 作为前缀被命名。例如 <code>parcel-plugin-foo</code>。任何在 <code>package.json</code> 中被列出的带有此前缀的依赖，都会在初始化的时候被自动加载。</p>
+<p>在 Parcel 中使用插件是前所未有的简单。你所做的，只是将它们安装好并保存到 <code>package.json</code> 中。插件需要以 <code>parcel-plugin-</code> 作为前缀被命名。例如 <code>parcel-plugin-foo</code>。任何在 <code>package.json</code> 中被列出的带有此前缀的依赖，都会在初始化的时候被自动加载。</p>
     </main>
   </div>
   <script>
