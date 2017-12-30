@@ -3,7 +3,7 @@
 
 ### 中文站点
 该项目是 [parceljs.org](https://parceljs.org) 的中文文档。<br>
-访问地址为: [parceljs.io](https://www.parceljs.io)<br>
+访问地址为：[parceljs.io](https://www.parceljs.io)<br>
 中文站点是由 CI 自动构建并部署到 gh-pages 分支。
 ### 参与翻译
 
