@@ -7,7 +7,7 @@ branches:
   only:
     - cn
 script:
-- npm install
+- npm i
 - bash ./shell/deploy.sh 
 sudo: required   
 # env:
