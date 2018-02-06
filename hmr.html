@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>🔥 热模块替换(HMR)</title>
+  <title>🔥 热模块重载(HMR)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link type="text/css" rel="stylesheet" href="assets/style.css" />
   <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
@@ -42,7 +42,7 @@
         <li><a href="assets.html">📦 资源</a></li>
         <li><a href="transforms.html">🐠 转换</a></li>
         <li><a href="code_splitting.html">✂️ 代码拆分</a></li>
-        <li><a href="hmr.html">🔥 热模块替换</a></li>
+        <li><a href="hmr.html">🔥 热模块重载</a></li>
         <li><a href="production.html">✨ 生产环境</a></li>
         <li><a href="recipes.html">🍰 配方</a></li>
       </ul>
@@ -54,8 +54,8 @@
         <li><a href="plugins.html">🔌 插件</a></li>
       </ul>
     </nav>
-    <main><h1 id="🔥-热模块替换(hmr)"><a class="header-link" href="#🔥-热模块替换(hmr)"></a>🔥 热模块替换(HMR)</h1>
-<p>热模块替换 (HMR) 在运行时自动更新浏览器中的模块优化开发体验，无需刷新整个页面。这意味着在您代码小幅更改时可以保留应用程序的状态。Parcel 的 HMR 实现支持开箱即用的 JavaScript 和 CSS 资源。HMR 构建在生产模式下时自动禁用。</p>
+    <main><h1 id="🔥-热模块重载(hmr)"><a class="header-link" href="#🔥-热模块重载(hmr)"></a>🔥 热模块重载(HMR)</h1>
+<p>热模块重载 (HMR) 在运行时自动更新浏览器中的模块优化开发体验，无需刷新整个页面。这意味着在您代码小幅更改时可以保留应用程序的状态。Parcel 的 HMR 实现支持开箱即用的 JavaScript 和 CSS 资源。HMR 构建在生产模式下时自动禁用。</p>
 <p>保存文件时，Parcel 将重新编译所更改的内容，并将包含新代码的更新发送到任何正在运行的客户端。新的代码会替换旧版本的代码，并与所有 parents 重新评估(译者注：此句翻译上有些奇怪，大家有更好的翻译欢迎 PR )。你可以使用 <code>module.hot</code> API 对此过程进行 hook ，编写这段代码会在你处理模块时或有新版本进入时通知您。类似项目 <a href="https://github.com/gaearon/react-hot-loader">react-hot-loader</a> 可以帮助你完成该过程，并通过 Parcel 实现开箱即用。</p>
 <p>有两种已知方法： <code>module.hot.accept</code> 和 <code>module.hot.dispose</code> 。你可以调用 <code>module.hot.accept</code> 并赋予一个回调函数，该函数会在模块或其他依赖项被更新时执行。当该模块即将被替换时，<code>module.hot.dispose</code> 回调函数会被调用。</p>
 <pre class="hljs"><code><span class="hljs-keyword">if</span> (<span class="hljs-built_in">module</span>.hot) {
@@ -66,7 +66,16 @@
   <span class="hljs-built_in">module</span>.hot.accept(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-comment">// 模块或其依赖项之一刚刚更新时</span>
   });
-}</code></pre>    </main>
+}</code></pre><h2 id="安全写入(safe-write)"><a class="header-link" href="#安全写入(safe-write)"></a>安全写入(Safe Write)</h2>
+<p>一些文本编辑器和 IDE 均有<code>安全写入</code>的功能，这基本上可以防止数据丢失，通过获取文本的副本并在保存时对其进行重命名操作。</p>
+<p>当使用热模块重载 (HMR) 时，此功能会阻止文件更新的自动检测，要禁用<code>安全写入</code>，请使用下列提供的选项：</p>
+<ul class="list">
+<li><code>Sublime Text 3</code> 将 atomic_save: &quot;false&quot; 添加到你用户设置中。</li>
+<li><code>IntelliJ</code> 在设置中使用搜索来查找 &quot;safe write&quot; 并将其禁用。</li>
+<li><code>Vim</code> 添加 :set backupcopy=yes 到你的设置中.</li>
+<li><code>WebStorm</code> 在 Preferences &gt; Appearance &amp; Behavior &gt; System Settings 中取消选中 &quot;safe write&quot; 选项。</li>
+</ul>
+    </main>
   </div>
   <script>
     (function () {
