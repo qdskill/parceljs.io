@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>📚 API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link type="text/css" rel="stylesheet" href="assets/style.css" />
+  <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
+  <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
+  <!--<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110647385-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-110647385-1');
+  </script>-->
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6b5f065a80e0af3ff54139cf0ae94d47";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>    
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">
+      <img class="parcel" src="assets/parcel.png" srcset="assets/parcel@2x.png 2x, assets/parcel@3x.png 3x" height="30">
+      <img class="type" src="assets/logo.svg" alt="Parcel">
+    </a>
+    <div class="links">
+      <a href="https://github.com/parcel-bundler/parcel" target="_blank">GitHub</a>
+    </div>
+  </header>
+  <div class="content">
+    <nav>
+      <ul>
+        <li><a href="getting_started.html">🚀 快速开始</a></li>
+        <li><a href="assets.html">📦 资源</a></li>
+        <li><a href="transforms.html">🐠 转换</a></li>
+        <li><a href="code_splitting.html">✂️ 代码拆分</a></li>
+        <li><a href="hmr.html">🔥 热模块重载</a></li>
+        <li><a href="production.html">✨ 生产环境</a></li>
+        <li><a href="recipes.html">🍰 配方</a></li>
+      </ul>
+      <h3>进阶</h3>
+      <ul>
+        <li><a href="how_it_works.html">🛠 它如何运作</a></li>
+        <li><a href="asset_types.html">📝 资源类型</a></li>
+        <li><a href="api.html">📚 API</a></li>
+        <li><a href="packagers.html">📦 Packagers</a></li>
+        <li><a href="plugins.html">🔌 插件</a></li>
+      </ul>
+    </nav>
+    <main><h1 id="📚-api"><a class="header-link" href="#📚-api"></a>📚 API</h1>
+<h2 id="bundler"><a class="header-link" href="#bundler"></a>Bundler</h2>
+<p>你可以选择使用 API 替代 CLI 来初始化 bunlder ，获取更高级的使用方式(例如: 在每次构建后进行自定义操作)。
+针对每个选项都给出了可参考的示例进行说明:</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> Bundler = <span class="hljs-built_in">require</span>(<span class="hljs-string">'parcel-bundler'</span>);
+<span class="hljs-keyword">const</span> Path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
+
+<span class="hljs-comment">// 入口文件路径</span>
+<span class="hljs-keyword">const</span> file = Path.join(__dirname, <span class="hljs-string">'./index.html'</span>);
+
+<span class="hljs-comment">// Bundler 选项</span>
+<span class="hljs-keyword">const</span> options = {
+  <span class="hljs-attr">outDir</span>: <span class="hljs-string">'./dist'</span>, <span class="hljs-comment">// 将生成的文件放入输出目录下，默认为 dist</span>
+  outFile: <span class="hljs-string">'index.html'</span>, <span class="hljs-comment">// 输出文件的名称</span>
+  publicUrl: <span class="hljs-string">'./'</span>, <span class="hljs-comment">// 静态资源的 url ，默认为 dist</span>
+  watch: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 是否需要监听文件并在发生改变时重新编译它们，默认为 process.env.NODE_ENV !== 'production'</span>
+  cache: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 启用或禁用缓存，默认为 true</span>
+  cacheDir: <span class="hljs-string">'.cache'</span>, <span class="hljs-comment">// 缓存被放入的目录，默认为 .cache</span>
+  minify: <span class="hljs-literal">false</span>, <span class="hljs-comment">// 压缩文件，当 process.env.NODE_ENV === 'production' 时，被启用。</span>
+  target: <span class="hljs-string">'browser'</span>, <span class="hljs-comment">// 浏览器/node/electron, 默认为 browser</span>
+  https: <span class="hljs-literal">false</span>, <span class="hljs-comment">// 服务器文件使用 https 或者 http，默认为 false</span>
+  logLevel: <span class="hljs-number">3</span>, <span class="hljs-comment">// 3 = 输出所有内容，2 = 输出警告和错误, 1 = 输出错误</span>
+  hmrPort: <span class="hljs-number">0</span>, <span class="hljs-comment">// hmr socket 运行的端口，默认为随机空闲的端口 (node.js 中的 0 被解析为随机空闲端口)</span>
+  sourceMaps: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 启用或禁用 sourcemaps，默认为启用(在精简版本中不支持)</span>
+  hmrHostname: <span class="hljs-string">''</span>, <span class="hljs-comment">// 热模块重载的主机名，默认为 ''</span>
+  detailedReport: <span class="hljs-literal">false</span> <span class="hljs-comment">// 打印 bundles ，资源，文件大小以及时间的详细报告，默认为 false ，只有在禁用监听时才打印报告</span>
+};
+
+<span class="hljs-comment">// 使用提供的入口文件路径和选项初始化 bundler</span>
+<span class="hljs-keyword">const</span> bundler = <span class="hljs-keyword">new</span> Bundler(file, options);
+
+<span class="hljs-comment">// 运行 bundler，这将返回主 bundle</span>
+<span class="hljs-comment">// 如果你使用监听模式，请使用这些事件，因为该 promise 只会触发一次，而不是每次重新构建</span>
+<span class="hljs-keyword">const</span> bundle = <span class="hljs-keyword">await</span> bundler.bundle();</code></pre><h3 id="事件"><a class="header-link" href="#事件"></a>事件</h3>
+<p>这是 bundler 所有的事件列表。</p>
+<ul class="list">
+<li><p>一旦 parcel 完成构建，<code>bundled</code> 会被调用，主 <a href="#bundle">bundle</a> 会作为参数传递到该 callback</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> bundle = <span class="hljs-keyword">new</span> Bundler(...);
+bundle.on(<span class="hljs-string">'bundled'</span>, (bundle) =&gt; {
+<span class="hljs-comment">// bundle 包含所有资源和 bundle，如需了解更多请查看文档</span>
+});</code></pre></li>
+<li><p>构建结束后 <code>buildEnd</code> 会被调用，如果发生错误它也会被触发</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> bundle = <span class="hljs-keyword">new</span> Bundler(...);
+bundle.on(<span class="hljs-string">'buildEnd'</span>, () =&gt; {
+<span class="hljs-comment">// 做任何事...</span>
+});</code></pre></li>
+</ul>
+<h3 id="bundle"><a class="header-link" href="#bundle"></a>Bundle</h3>
+<p><code>Bundle</code> 是 parcel 用来将资源捆绑在一起的工具，它还包含能够构建 bundle 树的子 bundle 和兄弟 bundle。</p>
+<h4 id="属性"><a class="header-link" href="#属性"></a>属性</h4>
+<ul class="list">
+<li><code>type</code>: 它包含的资源类型 (例如: js, css, map, ...)</li>
+<li><code>name</code>: bundle 的名称 (使用 <code>entryAsset</code> 的 <code>Asset.generateBundleName()</code> 生成)</li>
+<li><code>parentBundle</code>: 父 bundle ，在入口 bundle 下为 null</li>
+<li><code>entryAsset</code>: bundle 的入口，用于生成名称和收集资源</li>
+<li><code>assets</code>: bundle 中所有资源的<code>集合</code></li>
+<li><code>childBundles</code>: 所有子 bundle 的<code>集合</code></li>
+<li><code>siblingBundles</code>: 所有兄弟 bundle 的<code>集合</code></li>
+<li><code>siblingBundlesMap</code>: 所有兄弟 bundle 的映射 <code>Map&lt;String(Type: js, css, map, ...), Bundle&gt;</code></li>
+<li><code>offsets</code>: 所有 bundle 中资源位置的映射 <code>Map&lt;Asset, number(line number inside the bundle)&gt;</code> ，用于生成准确的 sourcemap 。</li>
+</ul>
+<h4 id="树"><a class="header-link" href="#树"></a>树</h4>
+<p><code>Bundle</code> 包含一个 <code>parentBundle</code>，<code>childBundles</code> 和 <code>siblingBundles</code>，所有这些属性一起创建一个快速迭代的 bundle 树。</p>
+<p>资源树及其生成的 bundle 树的基本示例如下:</p>
+<h5 id="资源树:"><a class="header-link" href="#资源树:"></a>资源树:</h5>
+<p><code>index.html</code> 引用 <code>index.js</code> 和 <code>index.css</code></p>
+<p><code>index.js</code> 引用 <code>test.js</code> 和 <code>test.txt</code></p>
+<pre class="hljs"><code>index.html
+<span class="hljs-comment">-- index.js</span>
+ |<span class="hljs-comment">--- test.js</span>
+ |<span class="hljs-comment">--- test.txt</span>
+<span class="hljs-comment">-- index.css</span></code></pre><h5 id="bundle-树:"><a class="header-link" href="#bundle-树:"></a>Bundle 树:</h5>
+<p><code>index.html</code> 被作为主 bundle 的入口资源，这个主 bundle 创建了两个子 bundle ，一个用于 <code>index.js</code>，另一个用于 <code>index.css</code> ，这是因为它们的类型不同于 <code>html</code> 。</p>
+<p><code>index.js</code> 引入了两个文件，<code>test.js</code> 和 <code>test.txt</code> 。</p>
+<p><code>test.js</code> 被添加到了 <code>index.js</code> bundle 的资源中，因为它与 <code>index.js</code> 的类型相同。</p>
+<p><code>test.txt</code> 会创建一个新的 bundle ，并被添加到 <code>index.js</code> bundle 的子元素中，因为它是与 <code>index.js</code> 不同的资源类型。</p>
+<p><code>index.css</code> 不包含引用，因此只包含它的入口资源。</p>
+<p><code>index.css</code> 和 <code>index.js</code> 的 bundle 彼此互为共享相同父级的兄弟 bundle 。</p>
+<pre class="hljs"><code><span class="hljs-keyword">index</span>.html
+-- <span class="hljs-keyword">index</span>.js (includes <span class="hljs-keyword">index</span>.js <span class="hljs-keyword">and</span> test.js)
+ |--- test.txt (includes test.txt)
+-- <span class="hljs-keyword">index</span>.css (includes <span class="hljs-keyword">index</span>.css)</code></pre><h3 id="中间件(middleware)"><a class="header-link" href="#中间件(middleware)"></a>中间件(Middleware)</h3>
+<p>中间件可以用于 hook 到 http 服务器(例如: <code>express</code> 或者 node <code>http</code>) 。</p>
+<p>express 使用 parcel 中间件的示例：</p>
+<pre class="hljs"><code><span class="hljs-keyword">const</span> Bundler = <span class="hljs-built_in">require</span>(<span class="hljs-string">'parcel-bundler'</span>);
+<span class="hljs-keyword">const</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>)();
+
+<span class="hljs-comment">// 使用文件和选项初始化新的 bundler (有关选项和文件的内容，请参阅 bundler 文档)</span>
+<span class="hljs-keyword">const</span> bundler = <span class="hljs-keyword">new</span> Bundler(file, options);
+
+<span class="hljs-comment">// 让 express 使用 bundler 中间件，这将让 parcel 处理你 express 服务器上的每个请求</span>
+app.use(bundler.middleware());
+
+<span class="hljs-comment">// 监听端口 8080</span>
+app.listen(<span class="hljs-number">8080</span>);</code></pre>    </main>
+  </div>
+  <script>
+    (function () {
+      var activeLink = Array.from(document.querySelectorAll('nav a')).find(function (a) {
+        return a.href === window.location.href;
+      });
+
+      activeLink.classList.add('selected');
+    })();
+  </script>
+</body>
+</html>
